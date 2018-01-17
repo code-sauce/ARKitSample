@@ -11,7 +11,7 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
-
+    
     @IBOutlet var sceneView: ARSCNView!
     var animations = [String: CAAnimation]()
     var idle:Bool = true
@@ -37,38 +37,45 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func loadAnimations () {
         // Load the character in the idle animation
-        let idleScene = SCNScene(named: "art.scnassets/gatorEdited.dae")!
-        
-        // This node will be parent of all the animation models
-        let node = SCNNode()
-        
-        // Add all the child nodes to the parent node
-        for child in idleScene.rootNode.childNodes {
-            node.addChildNode(child)
+        let sceneURL = URL(string: "https://s3-us-west-1.amazonaws.com/whare-asset-bundles/sjain/Boxing.scn")
+        do {
+            let idleScene = try SCNScene(url: sceneURL!)
+            // This node will be parent of all the animation models
+            let node = SCNNode()
+            
+            // Add all the child nodes to the parent node
+            for child in idleScene.rootNode.childNodes {
+                node.addChildNode(child)
+            }
+            // Set up some properties
+            node.position = SCNVector3(0, -1, -2)
+            node.scale = SCNVector3(0.005, 0.005, 0.005)
+            // Add the node to the scene
+            sceneView.scene.rootNode.addChildNode(node)
+            
+            // Load all the DAE animations
+            loadAnimation(withKey: "taunt", sceneName: "gatorTaunt", animationIdentifier: "gatorTauntEdited-1")
+            
+        }
+        catch {
+            
         }
         
-        // Set up some properties
-        node.position = SCNVector3(0, -1, -2)
-        node.scale = SCNVector3(0.005, 0.005, 0.005)
-        // Add the node to the scene
-        sceneView.scene.rootNode.addChildNode(node)
         
-        // Load all the DAE animations
-        loadAnimation(withKey: "taunt", sceneName: "gatorTauntEdited", animationIdentifier: "gatorTauntEdited-1")
-        //loadAnimation(withKey: "die", sceneName: "gatorDyingEdited", animationIdentifier: "gatorDyingEdited-1")
+        
     }
     
     func loadAnimation(withKey: String, sceneName:String, animationIdentifier:String) {
         
-        if let sceneURL = URL(string: "https://s3-us-west-1.amazonaws.com/whare-asset-bundles/sjain/" + sceneName + ".dae") {
-//        if let sceneURL = Bundle.main.url(forResource: sceneName, withExtension: "dae") {
+        if let sceneURL = URL(string: "https://s3-us-west-1.amazonaws.com/whare-asset-bundles/sjain/" + sceneName + ".scn") {
+            //        if let sceneURL = Bundle.main.url(forResource: sceneName, withExtension: "dae") {
             do {
                 
-                let fileContent = try String(contentsOf: sceneURL)
-                let data = fileContent.data(using: String.Encoding.utf8)
-                print(data)
-                
-                let sceneSource = SCNSceneSource(data: data!)
+                //                let fileContent = try String(contentsOf: sceneURL)
+                //                let data = fileContent.data(using: String.Encoding.utf8)
+                //                print(data)
+                //
+                let sceneSource = SCNSceneSource(url: sceneURL)
                 let identifiers = sceneSource?.identifiersOfEntries(withClass: CAAnimation.self)
                 if let animationObject = sceneSource?.entryWithIdentifier(animationIdentifier, withClass: CAAnimation.self) {
                     // The animation will only play once
@@ -101,24 +108,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let hitResults: [SCNHitTestResult]  = sceneView.hitTest(location, options: hitTestOptions)
         
-//        if hitResults.first != nil {
-            if(idle) {
-                playAnimation(key: "taunt")
-                stopAnimation(key: "die")
-            } else {
-                playAnimation(key: "die")
-                stopAnimation(key: "taunt")
-            }
-            idle = !idle
-            return
-//        }
+        //        if hitResults.first != nil {
+        
+        playAnimation(key: "taunt")
+        
+        return
+        //        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-
+        
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -143,17 +145,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
-
+    
     // MARK: - ARSCNViewDelegate
     
-/*
-    // Override to create and configure nodes for anchors added to the view's session.
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        let node = SCNNode()
+    /*
+     // Override to create and configure nodes for anchors added to the view's session.
+     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+     let node = SCNNode()
      
-        return node
-    }
-*/
+     return node
+     }
+     */
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -170,3 +172,5 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
 }
+
+
