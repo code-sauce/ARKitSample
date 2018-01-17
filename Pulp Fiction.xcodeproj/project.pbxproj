@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		740DED4420057093008C7DEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740DED4320057093008C7DEC /* AppDelegate.swift */; };
-		740DED4620057093008C7DEC /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 740DED4520057093008C7DEC /* art.scnassets */; };
 		740DED4820057093008C7DEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740DED4720057093008C7DEC /* ViewController.swift */; };
 		740DED4B20057093008C7DEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 740DED4920057093008C7DEC /* Main.storyboard */; };
 		740DED4D20057093008C7DEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 740DED4C20057093008C7DEC /* Assets.xcassets */; };
 		740DED5020057093008C7DEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 740DED4E20057093008C7DEC /* LaunchScreen.storyboard */; };
 		740DED5B20057093008C7DEC /* Pulp_FictionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740DED5A20057093008C7DEC /* Pulp_FictionTests.swift */; };
 		740DED6620057094008C7DEC /* Pulp_FictionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740DED6520057094008C7DEC /* Pulp_FictionUITests.swift */; };
+		74C6AEB5200EBA8200314B09 /* gatorTauntOptimized.dae in Resources */ = {isa = PBXBuildFile; fileRef = 74C6AEB4200EBA8200314B09 /* gatorTauntOptimized.dae */; };
+		74C6AEBE200EC67500314B09 /* gatorEdited.dae in Resources */ = {isa = PBXBuildFile; fileRef = 74C6AEBD200EC67500314B09 /* gatorEdited.dae */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,6 @@
 /* Begin PBXFileReference section */
 		740DED4020057093008C7DEC /* Pulp Fiction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pulp Fiction.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		740DED4320057093008C7DEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		740DED4520057093008C7DEC /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		740DED4720057093008C7DEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		740DED4A20057093008C7DEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		740DED4C20057093008C7DEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +49,8 @@
 		740DED6120057094008C7DEC /* Pulp FictionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pulp FictionUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		740DED6520057094008C7DEC /* Pulp_FictionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pulp_FictionUITests.swift; sourceTree = "<group>"; };
 		740DED6720057094008C7DEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74C6AEB4200EBA8200314B09 /* gatorTauntOptimized.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; name = gatorTauntOptimized.dae; path = ../../../Desktop/gatorTauntOptimized.dae; sourceTree = "<group>"; };
+		74C6AEBD200EC67500314B09 /* gatorEdited.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = gatorEdited.dae; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +101,9 @@
 		740DED4220057093008C7DEC /* Pulp Fiction */ = {
 			isa = PBXGroup;
 			children = (
+				74C6AEBC200EC66800314B09 /* assets */,
+				74C6AEB4200EBA8200314B09 /* gatorTauntOptimized.dae */,
 				740DED4320057093008C7DEC /* AppDelegate.swift */,
-				740DED4520057093008C7DEC /* art.scnassets */,
 				740DED4720057093008C7DEC /* ViewController.swift */,
 				740DED4920057093008C7DEC /* Main.storyboard */,
 				740DED4C20057093008C7DEC /* Assets.xcassets */,
@@ -126,6 +129,14 @@
 				740DED6720057094008C7DEC /* Info.plist */,
 			);
 			path = "Pulp FictionUITests";
+			sourceTree = "<group>";
+		};
+		74C6AEBC200EC66800314B09 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				74C6AEBD200EC67500314B09 /* gatorEdited.dae */,
+			);
+			path = assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,10 +246,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				740DED4620057093008C7DEC /* art.scnassets in Resources */,
 				740DED5020057093008C7DEC /* LaunchScreen.storyboard in Resources */,
+				74C6AEB5200EBA8200314B09 /* gatorTauntOptimized.dae in Resources */,
 				740DED4D20057093008C7DEC /* Assets.xcassets in Resources */,
 				740DED4B20057093008C7DEC /* Main.storyboard in Resources */,
+				74C6AEBE200EC67500314B09 /* gatorEdited.dae in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
